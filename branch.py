@@ -35,7 +35,6 @@ class room1(room):
     button: "Submit" --> goes to next room
         save to database
     """
-    
 class room2(room):
     def __init__(self):
         room.__init__(self)
@@ -48,13 +47,12 @@ class room2(room):
     def send_email(self, user_email):
         port = 587  # For starttls
         smtp_server = "smtp.gmail.com"
-        sender_email = "branchrooms@gmail.com"
+        sender_email = "branchhack332@gmail.com"
         receiver_email = user_email # to be filled 
         password = "hackathon123" 
         message = """
         Subject: Hi there
-
-        This message is sent from Python.
+        Your email has been verified.
         """
 
         context = ssl.create_default_context()
@@ -64,20 +62,22 @@ class room2(room):
             server.ehlo()  # Can be omitted
             server.login(sender_email, password)
             server.sendmail(sender_email, receiver_email, message)
- 
+            
 class room3(room):
     def __init__(self):
         room.__init__(self)
-    title = "Waking Up  "
-    text1 = """27th November 2021 insert calender with interview at todays date at 11.
-                You just woke up. You seem to be very nervous this morning; today's the big day.
-                Maybe you should go brush your teeth, it's already 10am.
-                The tap is broken.
-                            Do you want to:
-                            A. Try to fix it yourself
-                            B. Call a plumber and get it fixed later
-                            C. Don't brush your teeth and get dressed."""
-                            
+    title = "Waking Up.."
+    text1 = """27th November 2021
+
+You just woke up. You seem to be very nervous this morning; today's the big day.
+
+Maybe you should go brush your teeth, it's already 10am and the interview is at 11am.
+The tap is broken.
+            Do you want to:
+            A. Try to fix it yourself
+            B. Call a plumber and get it fixed later
+            C. Don't brush your teeth and get dressed."""
+            
     def selection(self, character):
         if (character == "A"):
             value = self.traits.get('initiative')
@@ -95,53 +95,55 @@ class room4(room):
 
     def __init__(self):
         room.__init__(self)
+        self.start_time=0
     
     def update_traits(self,points):
-        room.traits["organisation"] += points
+        room.traits["memory"] += points
     text1 = """
         You should start getting dressed. Grab what you need and go. 
         """
     
 class room5(room):
     def __init__(self):
-        room.__init_(self)
-    
+        room.__init__(self)
+        self.title="Car Stop"
+        self.text1="""
+You're driving your car to the interview.
+Suddenly, your car's engine starts to sputter
+and your car comes to a halt. You get out of your car
+and observe your surroundings."""
+
     def update_traits(self): # update if fix_car button is pressed
         room.traits["conscientious"] += 1
         
-    text1 = """You're driving your car to the interview.
-            Suddenly, your car's engine starts to sputter
-            and your car comes to a halt. You get out of your car
-            and observe your surroundings.
-            """
-    
-
 class room5_body(room): # body option
     def __init__(self):
-        room.__init_(self)
+        room.__init__(self)
         room.traits["empathy"] += 1
-
+        self.count = 0
+    
+    
     def update_traits(self): # if cpr is successful, press buttton 50 times 
             room.traits["patience"] += 1
             room.traits["conscientious"] += 1
+    title = "CPR"
+    text1 = """You approach what seems to be a bloody human body which is 
+confirmed on closer inspection. 
 
-    text1 = """You approach what seems to be a bloody human body
-            which is confirmed on closer inspection. The person
-            is not breathing and responding to any of your 
-            prompts. Do you perform CPR and try and resuscitate
-            the person or fix your car?"""
+The personis not breathing and responding to any of your prompts. 
+Do you perform CPR and try and resuscitate the person or fix your car?"""
 
         
 class room6(room):
-    
     def __init__(self):
-        room.__init_(self)
+        room.__init__(self)
 
     def update_traits(self): # if user takes more than 3 times to get it right
         room.traits["conscientious"] += 1
         
     text1 = """You open up the hood of your car. A cloud of trapped smoke 
-            rises and reveals that the engine needs to be reassembled.
+rises; You don't have anytime to call it and get it fixed. 
+You're going to have to walk to the interview!
             """
             
     text2 = """You fix the car's engine and it sputters back to life!
@@ -152,7 +154,7 @@ class room6(room):
 class room7(room):
 
     def __init__(self):
-        room.__init_(self)
+        room.__init__(self)
 
     title = "An unexpected encounter"
 
@@ -168,7 +170,7 @@ class room7(room):
 class room8(room):
 
     def __init__(self):
-        room.__init_(self)
+        room.__init__(self)
         
     title = ""
 
@@ -181,7 +183,7 @@ class room8(room):
 class room9(room):
 
     def __init__(self):
-        room.__init_(self)
+        room.__init__(self)
         
     title = "The interview begins"
 
@@ -198,7 +200,7 @@ class room9(room):
 class room10(room):
 
     def __init__(self):
-        room.__init_(self)
+        room.__init__(self)
         
     title = "Friends"
 
@@ -212,7 +214,7 @@ class room10(room):
 class room11(room):
 
     def __init__(self):
-        room.__init_(self)
+        room.__init__(self)
         
     title = "Jackpot"
 
@@ -238,80 +240,88 @@ class room12(room):
 class results(room):
     def __init__(self):
         room.__init__(self)
+        self.email = ""
 
     def getResults(self):
         jobs = {
-            "Biomedical_Scientist" : biomedical_scientist(),
-            "Pharmacist" : pharmacist()
-            "Crime_Scene_Investigator" : CSI()
-            "Surgeon" : surgeon()
-            "Application_Development" : application_development()
-            "Cyber_Security" : cyber_security()
-            "IT_Teaching" : it_teaching()
-            "Website_Design" : website_design()
-            "Contracting_Civil Engineer" : contracting_civil()
-            "Mechanical_Engineer" : mechanical_engineer()
-            "Nuclear_Engineer" : nuclear_engineer()
-            "Actuarial_Analyst" : actuarial_analyst()
-            "Accountant" : accountant()
-            "Data_Analyst" : data_analyst()
-            "Maths_Teacher" : maths_teacher()
-        }
+                    "Biomedical_Scientist" : self.biomedical_scientist(),
+                    "Pharmacist" : self.pharmacist(),
+                    "Crime_Scene_Investigator" : self.CSI(),
+                    "Surgeon" : self.surgeon(),
+                    "Application_Development" : self.application_development(),
+                    "Cyber_Security" : self.cyber_security(),
+                    "IT_Teaching" : self.it_teaching(),
+                    "Website_Design" : self.website_design(),
+                    "Contracting_Civil Engineer" : self.contracting_civil(),
+                    "Mechanical_Engineer" : self.mechanical_engineer(),
+                    "Nuclear_Engineer" : self.nuclear_engineer(),
+                    "Actuarial_Analyst" : self.actuarial_analyst(),
+                    "Accountant" : self.accountant(),
+                    "Data_Analyst" : self.data_analyst(),
+                    "Maths_Teacher" : self.maths_teacher()
+                }
 
-    def biomedical_scientist():
-        return (room.traits["pattern_recognition"] + room.traits["emotional_intelligence"] + room.traits["conscientioius"] + room.traits["attentive"])/9.0*100
+        return jobs
+    def biomedical_scientist(self):
+        return (room.traits["pattern_recognition"] + room.traits["emotional_intelligence"] + room.traits["conscientious"] + room.traits["attentive"])/9.0*100
 
 
-    def pharmacist():
+    def pharmacist(self):
         return (room.traits["long_think"] + room.traits["organisation"] + room.traits["attentive"] + room.traits["memory"])/16.0*100
 
 
-    def CSI():
+    def CSI(self):
         return (room.traits["attentive"] + room.traits["composure"] + room.traits["pattern_recognition"] + room.traits["memory"])/7*100
 
     
-    def surgeon():
+    def surgeon(self):
         return (room.traits["initiative"] + room.traits["conscientious"] + room.traits["attentive"] + room.traits["composure"])/7*100
 
-    def application_development():
+    def application_development(self):
         return (room.traits["pattern_recognition"] + room.traits["emotional_intelligence"] + room.traits["organisation"] + room.traits["conscientious"] + room.traits["patience"])/22*100
 
-    def cyber_security():
+    def cyber_security(self):
         return (room.traits["pattern_recognition"] + room.traits["long_think"] + room.traits["initiative"] + room.traits["attentive"] )/6*100
 
-    def it_teaching():
+    def it_teaching(self):
         return (room.traits["pattern_recognition"] + room.traits["emotional_intelligence"] + room.traits["organisation"] + room.traits["initiative"] + room.traits["patience"] + room.traits["attentive"] + room.traits["empathy"] + room.traits["composure"] + room.traits["memory"])/24*100
 
-    def website_design():
+    def website_design(self):
         return (room.traits["long_think"] + room.traits["organisation"])/13*100
         
-    def contracting_civil():
+    def contracting_civil(self):
         return (room.traits["organisation"] + room.traits["long_think"] + room.traits["conscientious"] + room.traits["attentive"])/18*100
 
-    def mechanical_engineer():
+    def mechanical_engineer(self):
         return (room.traits["conscientious"] + room.traits["long_think"])/5*100
         
-    def nuclear_engineer():
+    def nuclear_engineer(self):
         return (room.traits["organisation"] + room.traits["long_think"] + room.traits["conscientious"] + room.traits["attentive"])/18*100
     
-    def actuarial_analyst():
+    def actuarial_analyst(self):
         return (room.traits["pattern_recognition"] + room.traits["attentive"])
 
-    def accountant():
+    def accountant(self):
         return (room.traits["organisation"] + room.traits["attentive"] + room.traits["long_think"])
     
-    def data_analyst():
+    def data_analyst(self):
         return (room.traits["pattern_recognition"] + room.traits["attentive"])
     
-    def maths_teacher():
+    def maths_teacher(self):
         return (room.traits["pattern_recognition"] + room.traits["emotional_intelligence"] + room.traits["organisation"] + room.traits["initiative"] + room.traits["patience"] + room.traits["attentive"] + room.traits["empathy"] + room.traits["composure"] + room.traits["memory"])/24*100
 
+    def send_result_email(self):
+        port = 587  # For starttls
+        smtp_server = "smtp.gmail.com"
+        sender_email = "branchhack332@gmail.com"
+        receiver_email = self.email # to be filled 
+        password = "hackathon123" 
+        message = self.getResults()
 
-
-
-
-
-# traits
-
-
-# processing speed
+        context = ssl.create_default_context()
+        with smtplib.SMTP(smtp_server, port) as server:
+            server.ehlo()  # Can be omitted
+            server.starttls(context=context)
+            server.ehlo()  # Can be omitted
+            server.login(sender_email, password)
+            server.sendmail(sender_email, receiver_email, message)
