@@ -6,11 +6,11 @@ class room:
         "emotional_intelligence" : 0, # 1
         "long_think" : 0, # 1
         "organisation" : 0, # 12
-        "initative" : 0, # 1
+        "initiative" : 0, # 1
         "conscientious" : 0, # 4
         "patience" : 0, # 2
         "attentive" : 0, # 1
-        "emphathy" : 0, # 1
+        "empathy" : 0, # 1
         "composure" : 0, # 1
         "memory" : 0 # 2
     }
@@ -78,16 +78,16 @@ class room3(room):
                             B. Call a plumber and get it fixed later
                             C. Don't brush your teeth and get dressed."""
                             
-    def selection(self, character)
-    if (character == "A"):
-        value = self.traits.get('initative')
-        self.traits.update({'initative' : value + 1})
-    if (character == "B"):
-        value = self.traits.get('organisation')
-        self.traits.update({'organisation' : value + 1})
-    if (character == "C"):
-        value = self.traits.get('long_think')
-        self.traits.update({'long_think' : value + 1})
+    def selection(self, character):
+        if (character == "A"):
+            value = self.traits.get('initiative')
+            self.traits.update({'initiative' : value + 1})
+        if (character == "B"):
+            value = self.traits.get('organisation')
+            self.traits.update({'organisation' : value + 1})
+        if (character == "C"):
+            value = self.traits.get('long_think')
+            self.traits.update({'long_think' : value + 1})
 
     
 
@@ -138,7 +138,7 @@ class room6(room):
         room.__init_(self)
 
     def update_traits(self): # if user takes more than 3 times to get it right
-        rooms.traits["conscientious"] += 1
+        room.traits["conscientious"] += 1
         
     text1 = """You open up the hood of your car. A cloud of trapped smoke 
             rises and reveals that the engine needs to be reassembled.
@@ -240,31 +240,71 @@ class results(room):
         room.__init__(self)
 
     def getResults(self):
-        jobs : {
-            "Biomedical_Scientist" : biomedical_scientist()
-            "Pharmacist" : 0
-            "Crime_Scene_Investigator" : 0
-            "Surgeon" : 0
-            "Application_Development" : 0
-            "Cyber_Security" : 0
-            "IT_Teaching" : 0
-            "Website_Design" : 0
-            "Automotive_Engineer" : 0
-            "Contracting_Civil Engineer" : 0
-            "Mechanical_Engineer" : 0
-            "Nuclear_Engineer" : 0
-            "Actuarial_Analyst" : 0
-            "Accountant" : 0
-            "Data_Analyst" : 0
-            "Maths_Teacher" : 0
+        jobs = {
+            "Biomedical_Scientist" : biomedical_scientist(),
+            "Pharmacist" : pharmacist()
+            "Crime_Scene_Investigator" : CSI()
+            "Surgeon" : surgeon()
+            "Application_Development" : application_development()
+            "Cyber_Security" : cyber_security()
+            "IT_Teaching" : it_teaching()
+            "Website_Design" : website_design()
+            "Contracting_Civil Engineer" : contracting_civil()
+            "Mechanical_Engineer" : mechanical_engineer()
+            "Nuclear_Engineer" : nuclear_engineer()
+            "Actuarial_Analyst" : actuarial_analyst()
+            "Accountant" : accountant()
+            "Data_Analyst" : data_analyst()
+            "Maths_Teacher" : maths_teacher()
         }
 
     def biomedical_scientist():
-        sum = rooms.traits["pattern_recognition"] + rooms.traits["emotional_intelligence"] + rooms.
+        return (room.traits["pattern_recognition"] + room.traits["emotional_intelligence"] + room.traits["conscientioius"] + room.traits["attentive"])/9.0*100
 
 
     def pharmacist():
-        sum = rooms.traits["pattern_recognition"] + rooms.traits["emotional_intelligence"] + rooms.
+        return (room.traits["long_think"] + room.traits["organisation"] + room.traits["attentive"] + room.traits["memory"])/16.0*100
+
+
+    def CSI():
+        return (room.traits["attentive"] + room.traits["composure"] + room.traits["pattern_recognition"] + room.traits["memory"])/7*100
+
+    
+    def surgeon():
+        return (room.traits["initiative"] + room.traits["conscientious"] + room.traits["attentive"] + room.traits["composure"])/7*100
+
+    def application_development():
+        return (room.traits["pattern_recognition"] + room.traits["emotional_intelligence"] + room.traits["organisation"] + room.traits["conscientious"] + room.traits["patience"])/22*100
+
+    def cyber_security():
+        return (room.traits["pattern_recognition"] + room.traits["long_think"] + room.traits["initiative"] + room.traits["attentive"] )/6*100
+
+    def it_teaching():
+        return (room.traits["pattern_recognition"] + room.traits["emotional_intelligence"] + room.traits["organisation"] + room.traits["initiative"] + room.traits["patience"] + room.traits["attentive"] + room.traits["empathy"] + room.traits["composure"] + room.traits["memory"])/24*100
+
+    def website_design():
+        return (room.traits["long_think"] + room.traits["organisation"])/13*100
+        
+    def contracting_civil():
+        return (room.traits["organisation"] + room.traits["long_think"] + room.traits["conscientious"] + room.traits["attentive"])/18*100
+
+    def mechanical_engineer():
+        return (room.traits["conscientious"] + room.traits["long_think"])/5*100
+        
+    def nuclear_engineer():
+        return (room.traits["organisation"] + room.traits["long_think"] + room.traits["conscientious"] + room.traits["attentive"])/18*100
+    
+    def actuarial_analyst():
+        return (room.traits["pattern_recognition"] + room.traits["attentive"])
+
+    def accountant():
+        return (room.traits["organisation"] + room.traits["attentive"] + room.traits["long_think"])
+    
+    def data_analyst():
+        return (room.traits["pattern_recognition"] + room.traits["attentive"])
+    
+    def maths_teacher():
+        return (room.traits["pattern_recognition"] + room.traits["emotional_intelligence"] + room.traits["organisation"] + room.traits["initiative"] + room.traits["patience"] + room.traits["attentive"] + room.traits["empathy"] + room.traits["composure"] + room.traits["memory"])/24*100
 
 
 
@@ -273,5 +313,5 @@ class results(room):
 
 # traits
 
-# processing speed
 
+# processing speed
