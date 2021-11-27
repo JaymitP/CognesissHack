@@ -1,0 +1,15 @@
+.outer{
+    position:absolute;
+    width: 30%;
+    top:30%;
+    left: 35%; 
+}
+
+.form-check{
+    vertical-align: top;
+}
+
+.submit-button{
+    padding-left: 45%;
+    padding-top: 5%;
+}

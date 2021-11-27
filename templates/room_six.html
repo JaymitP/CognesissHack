@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block stylesheet %}<link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='room1.css') }}">{% endblock %}
+{% block title %}Fix Car{% endblock %}
+
+{% block content %}
+<div class="outer" style="width:100%; top:10%; left:10%; white-space: pre-wrap;">
+  <h1>{{room_6.title}}</h1>
+  <form action="http://127.0.0.1:5000/Results" method="POST">
+    <button class="btn btn-primary" color="red" style="text-align: center;" type="submit" id=continue-button name="Continue" value="Continue">Continue</button> 
+  </form>
+  <div style="display: inline-flex; width: 80%;">
+    <img src="/static/smoking_car.jpeg" alt="smoking car">
+    <p style="padding-left: 10%; padding-top: 2%;">{{room_6.text1}}</p>
+  </div>
+</div>
+<div class="d-print-inline" style="padding-top: 35%; padding-left: 16%"><div style="padding-left: 33%; padding-right: 10%; width: 5em;">
+    <form class="form-inline" method="POST">
+      <div class="form-group">
+        <div class="input-group">
+    
+            </select>
+        </div>
+        
+      </div>
+    </form>
+</div></div>
+{% endblock %}

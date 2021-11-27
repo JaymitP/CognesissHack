@@ -1,0 +1,35 @@
+body {
+    position: relative; /* usually the parent, in this case the body element, has position relative so that the absolute positioned child is positioned relative to it */
+    height: 100vh; /* 100% of the viewport height */
+    margin: 0; /* recommended */
+  }
+  
+  h1,p1 {
+   position: absolute; 
+   top: 40%; 
+   transform: translateY(-50%);
+   width: 100%;
+   text-align: center;
+   font-family: Arial, sans-serif;
+   font-weight: bold;
+   font-size: 500;
+  }
+
+  p1{
+    top:50%;
+    font-weight: 600;
+    font-size: 400;
+  }
+
+  button{
+    position: fixed; 
+    top: 60%;
+    right: 48%; 
+    transform: translateY(-50%);
+    width: 5em;
+    margin: 0 auto;
+    text-align: center;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: 800;
+    font-size: 500;
+  }

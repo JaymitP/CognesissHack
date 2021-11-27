@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block stylesheet %}<link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='room1.css') }}">{% endblock %}
+{% block title %}Verifying{% endblock %}
+{% block content %}
+<div class="outer" style="width:100%; top:5%; left:5%; white-space: pre-wrap;">
+  <h1>Someone needs help</h1>
+  <div style="display: inline-flex; width: 100%;">
+    <img src="/static/cpr.jpg" alt="Roomfivebody" style="width:800px; height:500px; padding-right:4%;">
+    <div>
+      <p style="width:100%">{{room5_body.text1}}</p>
+      <div class=submit-button style="display: inline-flex; width:100%; padding-left:50px;">
+        <form method ="POST">
+          <button class="btn btn-primary" color="red" style="text-align: center;" type="submit" id=cpr-button name="CPR" value="CPR">CPR</button>
+        </form>
+        <form action="http://127.0.0.1:5000/Results">
+          <button class="btn btn-primary" color="red" style="text-align: center;" type="submit" id=give-up-button name="Give up" value="Give up">Give up</button> 
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}
